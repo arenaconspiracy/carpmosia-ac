@@ -1,0 +1,19 @@
+- type: entity
+  parent: BasePDACartridge
+  id: EmergencyCartridge
+  name: Emergency message cartridge
+  description: A program for broadcasting emergency messages requesting help.
+  components:
+  - type: Sprite
+    state: cart-y
+  - type: Cartridge
+    programName: emergency-program-name
+    icon:
+      sprite: Objects/Fun/whistles.rsi
+      state: sec
+  - type: EmergencyCartridge
+    messageSound:
+      path: /Audio/Items/airhorn.ogg # TODO GET A NEW SOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      params:
+        volume: -5
+        maxDistance: 5

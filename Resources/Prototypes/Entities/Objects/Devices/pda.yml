@@ -84,6 +84,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - EmergencyCartridge # TBA
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -155,6 +156,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - EmergencyCartridge # TBA
 
 - type: entity
   parent: BasePDA
@@ -169,6 +171,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - EmergencyCartridge # TBA
 
 - type: entity
   parent: BasePDA
@@ -416,6 +419,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - EmergencyCartridge # TBA
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -482,6 +486,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - EmergencyCartridge # TBA
 
 - type: entity
   parent: BasePDA
@@ -527,6 +532,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      # missing EmergencyCartridge on purpose # TBA
 
 - type: entity
   parent: BasePDA
@@ -877,6 +883,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - EmergencyCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -949,6 +956,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      # missing EmergencyCartridge on purpose # TBA
 
 - type: entity
   parent: CentcomPDA
@@ -975,6 +983,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      # missing EmergencyCartridge on purpose # TBA
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1348,6 +1357,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - EmergencyCartridge # TBA
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1376,6 +1386,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - EmergencyCartridge # TBA
 
 - type: entity
   parent: ClownPDA
