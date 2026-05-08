@@ -1,0 +1,6 @@
+<cartridges:EmergencyUiFragment xmlns:cartridges="clr-namespace:Content.Client._Carpmosia.CartridgeLoader.Cartridges"
+                                 xmlns="https://spacestation14.io" Margin="1 0 2 0">
+    <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+    </BoxContainer>
+</cartridges:EmergencyUiFragment>

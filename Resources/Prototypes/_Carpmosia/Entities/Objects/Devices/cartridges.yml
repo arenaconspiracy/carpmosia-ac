@@ -6,6 +6,8 @@
   components:
   - type: Sprite
     state: cart-y
+  - type: UIFragment
+    ui: !type:EmergencyUi
   - type: Cartridge
     programName: emergency-program-name
     icon:

@@ -1,5 +1,7 @@
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Database;
+using Content.Server.Administration.Logs;
 using Content.Server.Pinpointer;
 using Content.Server.Radio.EntitySystems;
 using Robust.Shared.Audio.Systems;
@@ -14,6 +16,7 @@ namespace Content.Server._Carpmosia.CartridgeLoader.Cartridges;
 /// </summary>
 public sealed partial class EmergencyCartridgeSystem : EntitySystem
 {
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
@@ -49,6 +52,10 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
         var location = FormattedMessage.RemoveMarkupOrThrow(
             _navMap.GetNearestBeaconString((ent, xform)));
 
+        // log the action
+        _adminLogger.Add(LogType.PdaInteract, LogImpact.Low, // TODO: this stupid fucking event doesn't let you get the user
+            $"SAMPLE TEXT broadcast an emergency message on {ent.Comp.MessageChannel} using {args.Loader}");
+
         // empty message if there is no ID
         if (idContainer.Count == 0)
         {
@@ -67,7 +74,7 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
 
             Log.Info($"{idCard}, {idCardComp}, {idCardComp.FullName}");
 
-            // need to specify a default via ?? because FullName is nullable
+            // need to specify a default because FullName is nullable
             name = idCardComp.FullName ?? "An unknown caller";
         }
 
