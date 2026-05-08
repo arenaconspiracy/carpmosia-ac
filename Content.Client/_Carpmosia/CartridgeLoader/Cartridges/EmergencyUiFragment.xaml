@@ -2,23 +2,22 @@
     xmlns:cartridges="clr-namespace:Content.Client._Carpmosia.CartridgeLoader.Cartridges"
     Margin="10">
 
-    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
-        <BoxContainer HorizontalAlignment="Stretch" Margin="5">
-            <BoxContainer HorizontalAlignment="Stretch" MinWidth="300" Orientation="Vertical">
-                <Button Name="Button1" Margin="2" Text="Top text"/>
-                <Button Name="Button2" Margin="2" Text="Middle text"/>
-                <Button Name="Button3" Margin="2" Text="Bottom text"/>
-            </BoxContainer>
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+        VerticalExpand="True" Margin="5">
+        <BoxContainer HorizontalAlignment="Stretch" MinWidth="300" Orientation="Vertical">
+            <Button Name="Button1" Margin="2" Text="Top text"/>
+            <Button Name="Button2" Margin="2" Text="Middle text"/>
+            <Button Name="Button3" Margin="2" Text="Bottom text"/>
+        </BoxContainer>
 
-            <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical" Align="Center"
-                Margin="5" MinWidth="50">
-                <RichTextLabel Name="DelayLabel" Access="Public"
-                    Text="{Loc 'emergency-ui-timer'}"/>
-                <RichTextLabel Name="NamePreview" Access="Public"
-                    StyleClasses="LabelWeak" Text="name preview placeholder"/>
-                <RichTextLabel Name="LocationPreview" Access="Public"
-                    StyleClasses="LabelWeak" Text="location preview placeholder"/>
-            </BoxContainer>
+        <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical" Align="Center"
+            Margin="5" MinWidth="50">
+            <RichTextLabel Name="DelayLabel" Access="Public"
+                Text="{Loc 'emergency-ui-timer'}"/>
+            <RichTextLabel Name="NamePreview" Access="Public"
+                StyleClasses="LabelWeak" Text="name preview placeholder"/>
+            <RichTextLabel Name="LocationPreview" Access="Public"
+                StyleClasses="LabelWeak" Text="location preview placeholder"/>
         </BoxContainer>
     </BoxContainer>
 </cartridges:EmergencyUiFragment>

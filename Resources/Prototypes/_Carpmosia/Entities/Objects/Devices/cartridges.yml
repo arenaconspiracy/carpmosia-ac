@@ -19,3 +19,6 @@
       params:
         volume: -5
         maxDistance: 5
+  - type: VoiceOverride
+    nameOverride: SOS app
+    speechVerbOverride: Robotic

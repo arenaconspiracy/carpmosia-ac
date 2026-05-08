@@ -27,26 +27,4 @@ public sealed partial class EmergencyUiFragment : BoxContainer
         DelayLabel.SetMarkup(Loc.GetString("emergency-cartridge-ui-timer",
                 ("time", 1)));
     }
-
-    private void SendMessage(string note)
-    {/*
-        var row = new BoxContainer();
-        row.HorizontalExpand = true;
-        row.Orientation = LayoutOrientation.Horizontal;
-        row.Margin = new Thickness(4);
-
-        var label = new Label();
-        label.Text = note;
-        label.HorizontalExpand = true;
-        label.ClipText = true;
-
-        var removeButton = new TextureButton();
-        removeButton.AddStyleClass("windowCloseButton");
-        removeButton.OnPressed += _ => OnNoteRemoved?.Invoke(label.Text);
-
-        row.AddChild(label);
-        row.AddChild(removeButton);
-
-        MessageContainer.AddChild(row);
-    */}
 }

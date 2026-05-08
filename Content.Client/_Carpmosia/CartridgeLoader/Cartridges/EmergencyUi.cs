@@ -23,6 +23,14 @@ public sealed partial class EmergencyUi : UIFragment
 
     public override void UpdateState(BoundUserInterfaceState state)
     {
-        //Log.Info("UpdateState");
+        if (state is not EmergencyUiState emergencyState)
+            return;
+
+        _fragment.UpdateState(emergencyState);
+    }
+
+    private void SendMessage(string note)
+    {
+        
     }
 }
