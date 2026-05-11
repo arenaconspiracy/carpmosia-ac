@@ -3,6 +3,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Database;
 using Content.Server.Administration.Logs;
+using Content.Server.CartridgeLoader;
 using Content.Server.Pinpointer;
 using Content.Server.Radio.EntitySystems;
 using Robust.Shared.Audio.Systems;
@@ -19,6 +20,7 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
@@ -74,6 +76,10 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
         ent.Comp.LastLocationName = location;
         ent.Comp.LastIdName = name;
         Dirty(ent);
+
+        // UI bullshit that i hate
+        var state = new EmergencyUiState(ent.Comp.NextMessage, name, location);
+        _cartridge.UpdateCartridgeUiState(args.Loader, state);
 
         // empty message if there is no ID
         if (idContainer.Count == 0)
