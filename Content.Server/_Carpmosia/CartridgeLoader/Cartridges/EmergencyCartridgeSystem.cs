@@ -1,3 +1,4 @@
+using Content.Shared._Carpmosia.CartridgeLoader.Cartridges;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Database;
@@ -31,7 +32,7 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
     }
 
     private void OnActivated(Entity<EmergencyCartridgeComponent> ent, ref CartridgeActivatedEvent args)
-    {
+    { // TODO: move the bulk of this to a UI event instead of app open
         // cooldown logic
         var curTime = _timing.CurTime;
 
@@ -40,30 +41,21 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
 
         ent.Comp.NextMessage = curTime + ent.Comp.MessageCooldown;
 
-        // get the ID container
-        if (!_container.TryGetContainer(args.Loader, ent.Comp.IdContainer, out var idContainer))
-            return;
-
         // play the message sound
         _audio.PlayPvs(ent.Comp.MessageSound, ent);
-
-        // get the location for messages
-        var xform = Transform(ent);
-        var location = FormattedMessage.RemoveMarkupOrThrow(
-            _navMap.GetNearestBeaconString((ent, xform)));
 
         // log the action
         _adminLogger.Add(LogType.PdaInteract, LogImpact.Low, // TODO: this stupid fucking event doesn't let you get the user
             $"SAMPLE TEXT broadcast an emergency message on {ent.Comp.MessageChannel} using {args.Loader}");
 
-        // empty message if there is no ID
-        if (idContainer.Count == 0)
-        {
-            _radio.SendRadioMessage(ent,
-                Loc.GetString("emergency-message-noid", ("location", location)),
-                ent.Comp.MessageChannel, ent);
+        // get the location for messages
+        var xform = Transform(ent);
+        string location = FormattedMessage.RemoveMarkupOrThrow(
+            _navMap.GetNearestBeaconString((ent, xform)));
+
+        // get the ID container
+        if (!_container.TryGetContainer(args.Loader, ent.Comp.IdContainer, out var idContainer))
             return;
-        }
 
         // get the ID name
         string name = default!;
@@ -76,6 +68,20 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
 
             // need to specify a default because FullName is nullable
             name = idCardComp.FullName ?? "An unknown caller";
+        }
+
+        // set our datafields
+        ent.Comp.LastLocationName = location;
+        ent.Comp.LastIdName = name;
+        Dirty(ent);
+
+        // empty message if there is no ID
+        if (idContainer.Count == 0)
+        {
+            _radio.SendRadioMessage(ent,
+                Loc.GetString("emergency-message-noid", ("location", location)),
+                ent.Comp.MessageChannel, ent);
+            return;
         }
 
         // filled message using the ID name

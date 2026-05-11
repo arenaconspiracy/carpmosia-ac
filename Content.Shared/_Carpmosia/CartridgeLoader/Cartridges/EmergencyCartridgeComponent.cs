@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Carpmosia.CartridgeLoader.Cartridges;
+namespace Content.Shared._Carpmosia.CartridgeLoader.Cartridges;
 
 /// <summary>
 /// Emergency "SOS" message cartridge broadcasting a plea for help on radio
@@ -36,12 +36,31 @@ public sealed partial class EmergencyCartridgeComponent : Component
     /// <summary>
     /// Container to check for ID card
     /// </summary>
-    /// <remarks>
-    /// This sucks. I need to do this some other way
-    /// </remarks>
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
     public string IdContainer = "PDA-id";
+
+    /// <summary>
+    /// Name to use for messages
+    /// </summary>
+    /// <remarks>
+    /// Getting this at the same time as you send the message is easy and fine
+    /// but we save this to use in the app UI clientside.
+    /// </remarks>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public String LastIdName = String.Empty;
+
+    /// <summary>
+    /// Sound to play when sending a message
+    /// </summary>
+    /// <remarks>
+    /// Saving this for the same UI on client reason.
+    /// Plus only the serverside system can even /get/ this.
+    /// </remarks>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public String LastLocationName = String.Empty;
 
     /// <summary>
     /// Channel to send alert message to
