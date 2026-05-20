@@ -34,7 +34,7 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
     }
 
     private void OnActivated(Entity<EmergencyCartridgeComponent> ent, ref CartridgeActivatedEvent args)
-    { // TODO: move the bulk of this to a UI event instead of app open
+    {
         // cooldown logic
         var curTime = _timing.CurTime;
 
@@ -76,6 +76,8 @@ public sealed partial class EmergencyCartridgeSystem : EntitySystem
         ent.Comp.LastLocationName = location;
         ent.Comp.LastIdName = name;
         Dirty(ent);
+
+        // TODO: move the rest of this to a UI event instead of app open
 
         // UI bullshit that i hate
         var state = new EmergencyUiState(ent.Comp.NextMessage, name, location);

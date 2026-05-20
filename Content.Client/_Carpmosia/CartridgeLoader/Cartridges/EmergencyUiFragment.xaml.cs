@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Content.Shared._Carpmosia.CartridgeLoader.Cartridges;
 using Robust.Shared.Utility;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Carpmosia.CartridgeLoader.Cartridges;
 
@@ -19,11 +20,14 @@ public sealed partial class EmergencyUiFragment : BoxContainer
         Orientation = LayoutOrientation.Vertical;
         HorizontalExpand = true;
         VerticalExpand = true;
-        /*
-        EmergencyUiState state = new EmergencyUiState();
+
+        TimeSpan time = TimeSpan.FromSeconds(21);
+        string name = "bill";
+        string location = "place";
+
+        EmergencyUiState state = new EmergencyUiState(time, name, location);
 
         UpdateState(state);
-        */
     }
 
     public void UpdateState(EmergencyUiState state)
@@ -31,8 +35,8 @@ public sealed partial class EmergencyUiFragment : BoxContainer
         DelayLabel.SetMarkup(Loc.GetString("emergency-ui-timer",
                 ("time", state.NextMessage)));
         NamePreview.SetMarkup(Loc.GetString("emergency-ui-name",
-                ("time", state.LastIdName)));
+                ("name", state.LastIdName)));
         LocationPreview.SetMarkup(Loc.GetString("emergency-ui-location",
-                ("time", state.LastLocationName)));
+                ("location", state.LastLocationName)));
     }
 }

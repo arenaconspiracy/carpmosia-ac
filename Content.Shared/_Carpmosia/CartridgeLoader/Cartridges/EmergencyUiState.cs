@@ -1,3 +1,6 @@
+using Content.Shared.CartridgeLoader;
+using Content.Shared.Radio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
@@ -15,5 +18,18 @@ public sealed class EmergencyUiState : BoundUserInterfaceState
         NextMessage = nextMessage;
         LastIdName = lastIdName;
         LastLocationName = lastLocationName;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class EmergencyMessageEvent : CartridgeMessageEvent
+{
+    public ProtoId<RadioChannelPrototype> Channel;
+    public string Message;
+
+    public EmergencyMessageEvent(ProtoId<RadioChannelPrototype> channel, string message)
+    {
+        Channel = channel;
+        Message = message;
     }
 }

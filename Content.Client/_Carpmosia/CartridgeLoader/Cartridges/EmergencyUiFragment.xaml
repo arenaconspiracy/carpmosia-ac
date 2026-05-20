@@ -10,7 +10,7 @@
             <Button Name="Button3" Margin="2" Text="Bottom text"/>
         </BoxContainer>
 
-        <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical" Align="Center"
+        <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical"
             Margin="5" MinWidth="50">
             <RichTextLabel Name="DelayLabel" Access="Public"
                 Text="{Loc 'emergency-ui-timer'}"/>
